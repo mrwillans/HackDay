@@ -11,5 +11,16 @@ def randomLetters(length):
 def randomString():
     return ' '.join([randomLetters(8),randomLetters(2),randomLetters(2),randomLetters(4),randomLetters(1),randomLetters(6)])
 
+def reproduce():
+    strings = []
+    starter = randomString()
+    for i in range(0,101):
+        strings.append(starter)
+    return strings
+
+
+
 #print(randomString())
 #print(randomLetters(8))
+
+#print(reproduce())
