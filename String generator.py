@@ -2,15 +2,26 @@ import random
 import string
 
 letters = string.ascii_uppercase
-target = 'METHINKS IT IS LIKE A WEASEL'
+target = 'HELLO SAM THIS IS A TEST OF MY CODE'
 
 def randomLetters(length):
     lets = [random.choice(letters) for i in range(0,length)]
     word = ''.join(lets)
     return word
 
-def randomString():
-    return ' '.join([randomLetters(8),randomLetters(2),randomLetters(2),randomLetters(4),randomLetters(1),randomLetters(6)])
+def splitter(target):
+    words = target.split()
+    ranLettersCount = []
+    for i in range(len(words)):
+        ranLettersCount.append(len(words[i]))
+    return ranLettersCount
+
+
+def randomString(ranLettersCount):
+    ranLet = []
+    for i in range(len(ranLettersCount)):
+        ranLet.append(randomLetters(ranLettersCount[i]))
+    return ' '.join(ranLet)
 
 def reproduce(input):
     strings = []
@@ -52,7 +63,7 @@ def checker(array):
         for l in range(len(check)):
             if check[l] == target[l]:
                 score +=1
-        if score == 28:
+        if score == len(target):
             print('Success!')
             print(array[k])
             return 'success'
@@ -61,7 +72,8 @@ def checker(array):
             maxIndex = k
     return maxIndex
 
-start = randomString()
+starter = splitter(target)
+start = randomString(starter)
 initialArray = reproduce(start)
 mutated = mutator(initialArray)
 nextIndex = checker(mutated)
@@ -74,3 +86,5 @@ while True:
         break
     nextArray = mutated[nextIndex]
     print(nextArray)
+
+
